@@ -1,4 +1,4 @@
-@import '@styles/globals.css';
+@import '@styles/globals';
 
 body {
   width: 320px;
@@ -7,4 +7,5 @@ body {
 .root {
   display: flex;
   flex-flow: column;
+  font-size: $font-size-lg;
 }

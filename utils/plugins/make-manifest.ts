@@ -2,10 +2,10 @@ import fs from 'fs';
 import { resolve } from 'path';
 import { PluginOption } from 'vite';
 
-import { colorLog } from '../log';
 import manifest from '../../src/manifest';
+import { colorLog } from '../log';
 
-const outDir = resolve(__dirname, '..', '..', 'public');
+const outDir = resolve('public');
 
 export const makeManifest = (): PluginOption => {
   return {

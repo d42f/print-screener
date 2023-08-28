@@ -1,0 +1,28 @@
+@use 'sass:math';
+
+// Color contrast
+@function color-yiq($color, $dark: $yiq-text-dark, $light: $yiq-text-light) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) * 0.001;
+
+  @if ($yiq >= $yiq-contrasted-threshold) {
+    @return $dark;
+  } @else {
+    @return $light;
+  }
+}
+
+@function strip-units($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+
+@function form-control-line-height($font-size-base-value, $line-height, $font-size) {
+  @return math.div($line-height, $font-size-base-value * strip-units($font-size));
+}
+
+@function form-control-padding-y($font-size-base-value, $height, $line-height, $border-width) {
+  @return math.div(math.div($height - $line-height - strip-units($border-width) * 2, 2), $font-size-base-value) * 1rem;
+}

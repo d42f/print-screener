@@ -1,0 +1,42 @@
+@import '@styles/mixins';
+
+.button {
+  &Small {
+    @include button(sm);
+    &Rect {
+      @include button(sm, true);
+    }
+  }
+
+  &Medium {
+    @include button(md);
+    &Rect {
+      @include button(md, true);
+    }
+  }
+
+  &Large {
+    @include button(lg);
+    &Rect {
+      @include button(lg, true);
+    }
+  }
+
+  &Filled {
+    &Primary {
+      @include button-filled(primary);
+    }
+    &Secondary {
+      @include button-filled(secondary);
+    }
+  }
+
+  &Outline {
+    &Primary {
+      @include button-outline(primary);
+    }
+    &Secondary {
+      @include button-outline(secondary);
+    }
+  }
+}

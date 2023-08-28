@@ -1,0 +1,143 @@
+@import '../variables';
+
+$form-control-color: (
+  primary: $color-dark,
+  secondary: $color-dark,
+);
+
+$form-control-background: (
+  primary: $color-white,
+  secondary: $color-white,
+);
+
+$form-control-border: (
+  primary: lighten($color-primary, 58%),
+  secondary: lighten($color-secondary, 58%),
+);
+
+$form-control-hover-background: (
+  primary: $color-white,
+  secondary: $color-white,
+);
+
+$form-control-hover-border: (
+  primary: $color-primary,
+  secondary: $color-secondary,
+);
+
+$form-control-active-background: (
+  primary: $color-white,
+  secondary: $color-white,
+);
+
+$form-control-active-border: (
+  primary: darken($color-primary, 8%),
+  secondary: darken($color-secondary, 8%),
+);
+
+@mixin base-form-control($padding-y, $padding-x, $font-size, $line-height, $border-size, $border-radius) {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  line-height: $line-height;
+  border: $border-size solid transparent;
+  border-radius: $border-radius;
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $form-control-disabled-opacity;
+  }
+}
+
+@mixin form-control-filled(
+  $color,
+  $background,
+  $border,
+  $hover-background,
+  $hover-border,
+  $active-background,
+  $active-border
+) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &.focus {
+    color: $color;
+    background-color: $hover-background;
+    border-color: $hover-border;
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $color;
+    background-color: $background;
+    border-color: $border;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    color: $color;
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+}
+
+@mixin form-control-outline($color, $hover-color, $active-color) {
+  color: $color;
+  background-color: transparent;
+  border-color: $color;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &.focus {
+    color: $color;
+    background-color: rgba($color, 0.1);
+    border-color: $hover-color;
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $color;
+    background-color: transparent;
+    border-color: $color;
+    cursor: default;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    color: $color;
+    background-color: rgba($color, 0.2);
+    border-color: $active-color;
+  }
+}
+
+@mixin form-control($name: secondary, $size: md) {
+  width: 100%;
+
+  @include base-form-control(
+    map-get($form-control-padding-y, $size),
+    map-get($form-control-padding-x, $size),
+    map-get($form-control-font-size, $size),
+    map-get($form-control-line-height, $size),
+    map-get($form-control-border-width, $size),
+    map-get($form-control-border-radius, $size)
+  );
+
+  @include form-control-filled(
+    map-get($form-control-color, $name),
+    map-get($form-control-background, $name),
+    map-get($form-control-border, $name),
+    map-get($form-control-hover-background, $name),
+    map-get($form-control-hover-border, $name),
+    map-get($form-control-active-background, $name),
+    map-get($form-control-active-border, $name)
+  );
+}

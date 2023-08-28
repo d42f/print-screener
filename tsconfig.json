@@ -19,7 +19,8 @@
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
       "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@store/*": ["src/store/*"]
     },
 
     /* Linting */

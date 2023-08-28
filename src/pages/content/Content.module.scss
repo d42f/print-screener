@@ -1,0 +1,12 @@
+@import '@styles/variables';
+
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: $color-white;
+  box-shadow: $block-shadow;
+  border-radius: $border-radius-md;
+}

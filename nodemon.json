@@ -3,7 +3,7 @@
     "__DEV__": "true"
   },
   "watch": ["src", "utils", "package.json", "vite.config.ts"],
-  "ext": "tsx,css,html,ts",
+  "ext": "tsx,scss,css,html,ts",
   "ignore": ["src/**/*.spec.ts"],
   "exec": "vite build"
 }

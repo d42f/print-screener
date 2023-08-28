@@ -1,0 +1,88 @@
+@import '../variables';
+@import './form-control';
+
+$button-color: (
+  primary: $color-white,
+  secondary: $color-white,
+);
+
+$button-background: (
+  primary: $color-primary,
+  secondary: $color-secondary,
+);
+
+$button-border: (
+  primary: $color-primary,
+  secondary: $color-secondary,
+);
+
+$button-hover-background: (
+  primary: darken($color-primary, 4%),
+  secondary: darken($color-secondary, 4%),
+);
+
+$button-hover-border: (
+  primary: darken($color-primary, 4%),
+  secondary: darken($color-secondary, 4%),
+);
+
+$button-active-background: (
+  primary: darken($color-primary, 8%),
+  secondary: darken($color-secondary, 8%),
+);
+
+$button-active-border: (
+  primary: darken($color-primary, 8%),
+  secondary: darken($color-secondary, 8%),
+);
+
+$button-font-weight: (
+  sm: $font-weight-normal,
+  md: $font-weight-normal,
+  lg: $font-weight-bold,
+);
+
+@mixin button($size: md, $rect: false) {
+  @include base-form-control(
+    map-get($form-control-padding-y, $size),
+    if($rect == true, map-get($form-control-padding-y, $size), map-get($form-control-padding-x, $size)),
+    map-get($form-control-font-size, $size),
+    map-get($form-control-line-height, $size),
+    map-get($form-control-border-width, $size),
+    map-get($form-control-border-radius, $size)
+  );
+
+  justify-content: center;
+  white-space: nowrap;
+  font-weight: map-get($button-font-weight, $size);
+  cursor: pointer;
+  user-select: none;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@mixin button-filled($name: secondary) {
+  @include form-control-filled(
+    map-get($button-color, $name),
+    map-get($button-background, $name),
+    map-get($button-border, $name),
+    map-get($button-hover-background, $name),
+    map-get($button-hover-border, $name),
+    map-get($button-active-background, $name),
+    map-get($button-active-border, $name)
+  );
+}
+
+@mixin button-outline($name: secondary) {
+  @include form-control-outline(
+    map-get($button-border, $name),
+    map-get($button-hover-border, $name),
+    map-get($button-active-border, $name)
+  );
+}

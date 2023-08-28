@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
 import { Popup } from './Popup';
-import styles from './index.module.css';
+import styles from './index.module.scss';
 
 const init = () => {
   const rootContainer = document.querySelector('#__root');
