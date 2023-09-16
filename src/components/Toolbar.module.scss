@@ -6,7 +6,23 @@
   align-items: center;
   column-gap: 0.5rem;
   padding: 0.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: $color-white;
   box-shadow: $block-shadow;
   border-radius: $border-radius-md;
+
+  &Dragging {
+    cursor: grabbing;
+  }
+}
+
+.dragIcon {
+  color: $color-secondary;
+  cursor: grab;
+
+  &Dragging {
+    cursor: grabbing;
+  }
 }

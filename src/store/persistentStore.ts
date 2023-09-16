@@ -5,15 +5,11 @@ interface Options {
   listen?: boolean;
 }
 
-export const persistentAtom = <T>(
-  name: string,
-  initial: T,
-  opts: Options = {},
-): ReturnType<typeof atom<T | undefined>> => {
-  const store = atom<T | undefined>(initial);
+export const persistentAtom = <T>(name: string, initial: T, opts: Options = {}): ReturnType<typeof atom<T>> => {
+  const store = atom<T>(initial);
 
   const set = store.set;
-  store.set = (newValue: T | undefined): ReturnType<typeof set> => {
+  store.set = (newValue: T): ReturnType<typeof set> => {
     set(newValue);
     if (typeof newValue === 'undefined') {
       storage.local.remove(name);
@@ -26,10 +22,11 @@ export const persistentAtom = <T>(
     store.set(newValue);
   };
 
-  async function restore() {
+  const restore = async () => {
     const { [name]: value } = await storage.local.get(name);
+    // TODO: check value if valid
     store.set(value || initial);
-  }
+  };
 
   onMount(store, () => {
     restore();

@@ -18,8 +18,10 @@
       "@src/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/components/*"],
+      "@models/*": ["src/models/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
+      "@components/*": ["src/components/*"],
       "@store/*": ["src/store/*"]
     },
 

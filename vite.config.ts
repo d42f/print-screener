@@ -14,16 +14,20 @@ const root = resolve(__dirname, 'src');
 
 const assetsDir = resolve(root, 'assets');
 const stylesDir = resolve(root, 'styles');
-const componentsDir = resolve(root, 'components');
+const modelsDir = resolve(root, 'models');
+const hooksDir = resolve(root, 'hooks');
 const pagesDir = resolve(root, 'pages');
+const componentsDir = resolve(root, 'components');
 const storeDir = resolve(root, 'store');
 
 const alias = {
   '@src': root,
   '@assets': assetsDir,
   '@styles': stylesDir,
-  '@components': componentsDir,
+  '@models': modelsDir,
+  '@hooks': hooksDir,
   '@pages': pagesDir,
+  '@components': componentsDir,
   '@store': storeDir,
 };
 
