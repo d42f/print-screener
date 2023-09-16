@@ -1,25 +1,33 @@
 import { useEffect } from 'react';
 
 import Logo from '@assets/react.svg';
+import { useActivePage } from '@hooks/useActivePage';
+import { show, hide } from '@store/toolbar';
 import { Button } from '@components/Button';
-import { setVisible } from '@store/toolbar';
+
 import styles from './Popup.module.scss';
 
 export const Popup = (): JSX.Element => {
+  const activeTab = useActivePage();
+
   const handleVisibleClick = () => {
-    setVisible(true);
+    if (activeTab?.id) {
+      show(activeTab.id);
+    }
     window.close();
   };
 
   useEffect(() => {
-    setVisible(false);
+    hide();
   }, []);
 
   return (
     <div className={styles.wrapper}>
       <Logo />
       Popup component
-      <Button onClick={handleVisibleClick}>Show toolbar</Button>
+      <Button onClick={handleVisibleClick} disabled={!activeTab?.id}>
+        Show toolbar
+      </Button>
     </div>
   );
 };

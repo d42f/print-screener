@@ -21,7 +21,6 @@ const componentsDir = resolve(root, 'components');
 const storeDir = resolve(root, 'store');
 
 const alias = {
-  '@src': root,
   '@assets': assetsDir,
   '@styles': stylesDir,
   '@models': modelsDir,

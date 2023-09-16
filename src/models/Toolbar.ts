@@ -1,5 +1,5 @@
 export interface Toolbar {
-  visible: boolean;
+  tabId: number | null;
   position: ToolbarPosition;
 }
 

@@ -3,7 +3,7 @@ import { Toolbar, ToolbarPosition } from '@models/Toolbar';
 import { persistentAtom } from './persistentStore';
 
 const defaultValue: Toolbar = {
-  visible: false,
+  tabId: null,
   position: {
     x: 10,
     y: 10,
@@ -12,14 +12,14 @@ const defaultValue: Toolbar = {
 
 export const $toolbar = persistentAtom<Toolbar>('toolbar', defaultValue);
 
-export const setVisible = action($toolbar, 'setVisible', (store: WritableAtom<Toolbar>, visible: boolean) => {
-  store.set({ ...store.get(), visible });
+export const show = action($toolbar, 'show', (store: WritableAtom<Toolbar>, tabId: number) => {
+  store.set({ ...store.get(), tabId });
   return store.get();
 });
 
-export const toggle = action($toolbar, 'toggle', (store: WritableAtom<Toolbar>) => {
-  const state = store.get();
-  return setVisible(!state?.visible);
+export const hide = action($toolbar, 'hide', (store: WritableAtom<Toolbar>) => {
+  store.set({ ...store.get(), tabId: null });
+  return store.get();
 });
 
 export const setPosition = action(
