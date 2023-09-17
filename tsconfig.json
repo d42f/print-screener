@@ -19,8 +19,8 @@
       "@styles/*": ["src/styles/*"],
       "@models/*": ["src/models/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
       "@store/*": ["src/store/*"]
     },
 
