@@ -1,3 +1,4 @@
 export enum BackgroundCommand {
-  GetTab = 'GET_TAB',
+  GetTab,
+  CaptureVisibleTab,
 }

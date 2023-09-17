@@ -10,23 +10,23 @@ import { colorLog } from './utils/log';
 
 const outDir = resolve(__dirname, OUTPUT_FOLDER_NAME);
 const publicDir = resolve(__dirname, 'public');
-const root = resolve(__dirname, 'src');
+const srcDir = resolve(__dirname, 'src');
 
-const assetsDir = resolve(root, 'assets');
-const stylesDir = resolve(root, 'styles');
-const modelsDir = resolve(root, 'models');
-const hooksDir = resolve(root, 'hooks');
-const pagesDir = resolve(root, 'pages');
-const componentsDir = resolve(root, 'components');
-const storeDir = resolve(root, 'store');
+const assetsDir = resolve(srcDir, 'assets');
+const stylesDir = resolve(srcDir, 'styles');
+const modelsDir = resolve(srcDir, 'models');
+const hooksDir = resolve(srcDir, 'hooks');
+const pagesDir = resolve(srcDir, 'pages');
+const componentsDir = resolve(srcDir, 'components');
+const storeDir = resolve(srcDir, 'store');
 
 const alias = {
   '@assets': assetsDir,
   '@styles': stylesDir,
   '@models': modelsDir,
   '@hooks': hooksDir,
-  '@pages': pagesDir,
   '@components': componentsDir,
+  '@pages': pagesDir,
   '@store': storeDir,
 };
 

@@ -5,3 +5,19 @@
   row-gap: 1rem;
   padding: 1rem;
 }
+
+.logo {
+  width: 2rem;
+  height: auto;
+}
+
+.toolbar {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.preview {
+  display: flex;
+}

@@ -25,6 +25,10 @@ export const Toolbar = ({ className, baseStyle, onClose }: ToolbarProps): JSX.El
     [baseStyle, transform],
   );
 
+  const handleStart = () => {
+    //
+  };
+
   return (
     <div
       className={classNames(styles.wrapper, className, { [styles.dragIconDragging]: isDragging })}
@@ -36,7 +40,7 @@ export const Toolbar = ({ className, baseStyle, onClose }: ToolbarProps): JSX.El
         {...listeners}
       />
       <Logo />
-      <Button size="small" onClick={onClose}>
+      <Button size="small" onClick={handleStart}>
         Start
       </Button>
       <Button size="small" rect={true} onClick={onClose}>

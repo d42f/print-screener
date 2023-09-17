@@ -13,7 +13,7 @@ const MODIFIERS = [restrictToWindowEdges];
 export const Content = (): JSX.Element | null => {
   const { tabId, position } = useStore($toolbar);
   const [currentTab, setCurrentTab] = useState<chrome.tabs.Tab>();
-  const { send } = useBackgroundCommand();
+  const { call } = useBackgroundCommand();
 
   const baseStyle = useMemo<CSSProperties>(() => ({ left: `${position.x}px`, top: `${position.y}px` }), [position]);
 
@@ -22,10 +22,10 @@ export const Content = (): JSX.Element | null => {
   };
 
   useEffect(() => {
-    send<{ tab: typeof currentTab }>(BackgroundCommand.GetTab).then(({ tab }) => {
+    call<{ tab: typeof currentTab }>(BackgroundCommand.GetTab).then(({ tab }) => {
       setCurrentTab(tab);
     });
-  }, [send]);
+  }, [call]);
 
   return (
     <DndContext modifiers={MODIFIERS} onDragEnd={handleDragEnd}>
