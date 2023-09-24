@@ -1,3 +1,17 @@
+export const blobToBase64 = (blob: Blob): Promise<string> =>
+  new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.readAsDataURL(blob);
+  });
+
+export const base64ToBlob = (base64Blob: string): Promise<Blob> =>
+  new Promise((resolve, reject) => {
+    return fetch(base64Blob).then(response => {
+      response.blob().then(resolve, reject);
+    }, reject);
+  });
+
 export const dataURItoBlob = (dataUrl: string): Blob => {
   // convert base64 to raw binary data held in a string
   // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this

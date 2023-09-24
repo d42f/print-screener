@@ -15,6 +15,7 @@ const srcDir = resolve(__dirname, 'src');
 const assetsDir = resolve(srcDir, 'assets');
 const stylesDir = resolve(srcDir, 'styles');
 const modelsDir = resolve(srcDir, 'models');
+const utilsDir = resolve(srcDir, 'utils');
 const hooksDir = resolve(srcDir, 'hooks');
 const pagesDir = resolve(srcDir, 'pages');
 const componentsDir = resolve(srcDir, 'components');
@@ -24,6 +25,7 @@ const alias = {
   '@assets': assetsDir,
   '@styles': stylesDir,
   '@models': modelsDir,
+  '@utils': utilsDir,
   '@hooks': hooksDir,
   '@components': componentsDir,
   '@pages': pagesDir,
@@ -84,6 +86,7 @@ export default defineConfig({
         background: resolve(pagesDir, 'background', 'index.ts'),
         popup: resolve(pagesDir, 'popup', 'index.html'),
         options: resolve(pagesDir, 'options', 'index.html'),
+        offscreen: resolve(pagesDir, 'offscreen', 'index.html'),
       },
       output: {
         entryFileNames: chunk => `src/pages/${chunk.name}/index.js`,

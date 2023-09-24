@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
 import Logo from '@assets/icon-128.png';
-import { useActivePage } from '@hooks/useActivePage';
+import { useCurrentTab } from '@hooks/useCurrentTab';
 import { show } from '@store/toolbar';
 import { Button } from '@components/Button';
 import styles from './Popup.module.scss';
 
 export const Popup = (): JSX.Element => {
-  const activeTab = useActivePage();
+  const currentTab = useCurrentTab();
   const [previewUrl, setPreviewUrl] = useState<string>();
 
   const handlePictureClick = async () => {
@@ -16,8 +16,8 @@ export const Popup = (): JSX.Element => {
   };
 
   const handleToolbarClick = () => {
-    if (activeTab?.id) {
-      show(activeTab.id);
+    if (currentTab?.id) {
+      show(currentTab.id);
     }
   };
 
@@ -27,7 +27,7 @@ export const Popup = (): JSX.Element => {
       Popup component
       <div className={styles.toolbar}>
         <Button onClick={handlePictureClick}>Take a picture</Button>
-        <Button onClick={handleToolbarClick} disabled={!activeTab?.id}>
+        <Button onClick={handleToolbarClick} disabled={!currentTab?.id}>
           Show toolbar
         </Button>
       </div>

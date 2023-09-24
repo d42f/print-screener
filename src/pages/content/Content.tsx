@@ -1,19 +1,21 @@
-import { CSSProperties, useEffect, useMemo, useState } from 'react';
+import { CSSProperties, useMemo } from 'react';
 import { useStore } from '@nanostores/react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 
+import { BackgroundCommand } from '@models/Command';
+import { callCommand } from '@utils/command';
 import { $toolbar, hide, setPosition } from '@store/toolbar';
+import { useCurrentTab } from '@hooks/useCurrentTab';
 import { Toolbar } from '@components/Toolbar';
-import { useBackgroundCommand } from '@hooks/useBackgroundCommand';
-import { BackgroundCommand } from '@models/BackgroundCommand';
+import styles from './Content.module.scss';
+import { base64ToBlob } from '@utils/file';
 
 const MODIFIERS = [restrictToWindowEdges];
 
-export const Content = (): JSX.Element | null => {
+export const Content = (): JSX.Element => {
+  const currentTab = useCurrentTab();
   const { tabId, position } = useStore($toolbar);
-  const [currentTab, setCurrentTab] = useState<chrome.tabs.Tab>();
-  const { call } = useBackgroundCommand();
 
   const baseStyle = useMemo<CSSProperties>(() => ({ left: `${position.x}px`, top: `${position.y}px` }), [position]);
 
@@ -21,15 +23,23 @@ export const Content = (): JSX.Element | null => {
     setPosition({ x: position.x + delta.x, y: position.y + delta.y });
   };
 
-  useEffect(() => {
-    call<{ tab: typeof currentTab }>(BackgroundCommand.GetTab).then(({ tab }) => {
-      setCurrentTab(tab);
-    });
-  }, [call]);
+  const handleStart = async () => {
+    const { base64Blob } = await callCommand<{ base64Blob: string }>(BackgroundCommand.StartRecordingVisibleTab);
+    const blob = await base64ToBlob(base64Blob);
+    window.open(URL.createObjectURL(blob), '_blank');
+  };
+
+  const handleStop = () => {
+    callCommand(BackgroundCommand.StopRecordingVisibleTab);
+  };
 
   return (
     <DndContext modifiers={MODIFIERS} onDragEnd={handleDragEnd}>
-      {tabId && tabId === currentTab?.id ? <Toolbar baseStyle={baseStyle} onClose={hide} /> : null}
+      {!!tabId && tabId === currentTab?.id && (
+        <div className={styles.wrapper}>
+          <Toolbar baseStyle={baseStyle} onStart={handleStart} onStop={handleStop} onClose={hide} />
+        </div>
+      )}
     </DndContext>
   );
 };

@@ -4,6 +4,7 @@ import pkg from '../package.json';
 
 const manifest: Manifest.WebExtensionManifest = {
   manifest_version: 3,
+  minimum_chrome_version: '116',
   name: pkg.displayName,
   version: pkg.version,
   description: pkg.description,
@@ -21,7 +22,7 @@ const manifest: Manifest.WebExtensionManifest = {
   icons: {
     '128': 'icon-128.png',
   },
-  permissions: ['storage', 'activeTab', 'desktopCapture', 'pageCapture', 'tabCapture', 'tabs'],
+  permissions: ['activeTab', 'desktopCapture', 'offscreen', 'pageCapture', 'storage', 'tabCapture', 'tabs'],
   content_scripts: [
     {
       matches: ['http://*/*', 'https://*/*', '<all_urls>'],
