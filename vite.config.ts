@@ -83,10 +83,10 @@ export default defineConfig({
     emptyOutDir: false,
     rollupOptions: {
       input: {
-        background: resolve(pagesDir, 'background', 'index.ts'),
-        popup: resolve(pagesDir, 'popup', 'index.html'),
-        options: resolve(pagesDir, 'options', 'index.html'),
+        background: resolve(pagesDir, 'background.ts'),
         offscreen: resolve(pagesDir, 'offscreen', 'index.html'),
+        options: resolve(pagesDir, 'options', 'index.html'),
+        popup: resolve(pagesDir, 'popup', 'index.html'),
       },
       output: {
         entryFileNames: chunk => `src/pages/${chunk.name}/index.js`,
