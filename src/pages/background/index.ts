@@ -1,31 +1,31 @@
 import { BackgroundCommand, CommandAction, OffscreenCommand } from '@models/Command';
 import { callCommand } from '@utils/command';
+import { getMessageListener } from '@utils/message';
 
 const getTabMediaStreamId = (targetTabId: number): Promise<string> =>
   new Promise(resolve => chrome.tabCapture.getMediaStreamId({ targetTabId }, resolve));
 
-const getTab: CommandAction = (_message, sender, sendResponse) => {
+const getTab: CommandAction = ({ sender, sendResponse }) => {
   sendResponse({ tab: sender.tab });
 };
 
-const captureVisibleTab: CommandAction = (_message, _sender, sendResponse) => {
+const captureVisibleTab: CommandAction = ({ sendResponse }) => {
   chrome.tabs.captureVisibleTab(dataUrl => {
     sendResponse({ dataUrl });
   });
 };
 
-const getMediaStreamId: CommandAction = async (_message, sender, sendResponse) => {
+const getMediaStreamId: CommandAction = async ({ sender, sendResponse }) => {
   if (sender.tab?.id) {
     const streamId = await getTabMediaStreamId(sender.tab.id);
     sendResponse({ streamId });
   }
 };
 
-const startRecordingVisibleTab: CommandAction<unknown, { streamId: string; base64Blob: string }> = async (
-  _message,
+const startRecordingVisibleTab: CommandAction<void, { streamId: string; base64Blob: string }> = async ({
   sender,
   sendResponse,
-) => {
+}) => {
   const hasOffscreenDocument = await chrome.offscreen.hasDocument();
   if (!hasOffscreenDocument) {
     await chrome.offscreen.createDocument({
@@ -41,20 +41,17 @@ const startRecordingVisibleTab: CommandAction<unknown, { streamId: string; base6
   }
 };
 
-const stopRecordingVisibleTab: CommandAction<unknown, { status: string }> = async (_message, _sender, sendResponse) => {
+const stopRecordingVisibleTab: CommandAction<void, { status: string }> = async ({ sendResponse }) => {
   const { status } = await callCommand<{ status: string }>(OffscreenCommand.StopRecording);
   sendResponse({ status });
 };
 
-const commandActions: Record<BackgroundCommand, CommandAction> = {
-  [BackgroundCommand.GetTab]: getTab,
-  [BackgroundCommand.CaptureVisibleTab]: captureVisibleTab,
-  [BackgroundCommand.GetMediaStreamId]: getMediaStreamId,
-  [BackgroundCommand.StartRecordingVisibleTab]: startRecordingVisibleTab,
-  [BackgroundCommand.StopRecordingVisibleTab]: stopRecordingVisibleTab,
-};
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  commandActions[message.command as BackgroundCommand]?.(message, sender, sendResponse);
-  return true;
-});
+chrome.runtime.onMessage.addListener(
+  getMessageListener<BackgroundCommand>({
+    [BackgroundCommand.GetTab]: getTab,
+    [BackgroundCommand.CaptureVisibleTab]: captureVisibleTab,
+    [BackgroundCommand.GetMediaStreamId]: getMediaStreamId,
+    [BackgroundCommand.StartRecordingVisibleTab]: startRecordingVisibleTab,
+    [BackgroundCommand.StopRecordingVisibleTab]: stopRecordingVisibleTab,
+  }),
+);
