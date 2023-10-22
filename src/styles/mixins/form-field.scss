@@ -1,9 +1,10 @@
 @import '../variables';
+@import '../functions';
 
 @mixin form-field() {
   display: flex;
   flex-flow: column;
-  row-gap: 0.25rem;
+  row-gap: rem-to-px(0.25rem);
 }
 
 @mixin form-label() {
@@ -12,7 +13,7 @@
 
 @mixin form-error() {
   line-height: $line-height-sm;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-normal;
+  font-size: rem-to-px($font-size-sm);
+  font-weight: rem-to-px($font-weight-normal);
   color: $danger;
 }

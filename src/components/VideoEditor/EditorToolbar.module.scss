@@ -1,0 +1,9 @@
+@import '@styles/functions';
+
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: rem-to-px(0.5rem);
+  padding: rem-to-px(0.5rem);
+}

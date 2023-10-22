@@ -1,8 +1,9 @@
 @import '@styles/variables';
+@import '@styles/functions';
 
 .wrapper {
   font-family: $font-family-sans-serif;
-  font-size: $font-size-base;
+  font-size: rem-to-px($font-size-base);
   line-height: $line-height-base;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

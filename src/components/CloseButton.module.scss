@@ -1,0 +1,15 @@
+@import '@styles/variables';
+@import '@styles/functions';
+
+.icon {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  transition: opacity 0.2s, transform 0.3s;
+
+  [role='button']:hover &,
+  [role='button']:focus & {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+}

@@ -32,7 +32,7 @@ const VARIANT_NAMES: Record<ButtonVariant, Record<ButtonTheme, string>> = {
   },
 };
 
-interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   className?: string;
   theme?: ButtonTheme;
   variant?: ButtonVariant;

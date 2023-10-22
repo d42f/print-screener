@@ -1,4 +1,5 @@
 @import '../variables';
+@import '../functions';
 
 $form-control-color: (
   primary: $color-dark,
@@ -39,11 +40,11 @@ $form-control-active-border: (
   display: inline-flex;
   flex-flow: row nowrap;
   align-items: center;
-  padding: $padding-y $padding-x;
-  font-size: $font-size;
+  padding: rem-to-px($padding-y) rem-to-px($padding-x);
+  font-size: rem-to-px($font-size);
   line-height: $line-height;
   border: $border-size solid transparent;
-  border-radius: $border-radius;
+  border-radius: rem-to-px($border-radius);
 
   // Disabled comes first so active can properly restyle
   &.disabled,

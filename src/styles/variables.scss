@@ -1,4 +1,5 @@
 @use 'sass:math';
+@import 'base-values';
 @import 'functions';
 
 $font-family-serif: 'Times New Roman', Times, sans-serif;
@@ -7,7 +8,6 @@ $font-family-sans-serif: Raleway, 'Segoe UI', Arial, sans-serif, 'Apple Color Em
 $font-family-mono: 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Fira Mono', 'Droid Sans Mono',
   'Courier New', monospace;
 
-$font-size-base-value: 16;
 $font-size-base-value-sm: $font-size-base-value * 0.75;
 $font-size-base-value-md: $font-size-base-value * 1;
 $font-size-base-value-lg: $font-size-base-value * 1.25;
@@ -22,7 +22,6 @@ $font-weight-lighter: 300;
 $font-weight-normal: 400;
 $font-weight-bold: 600;
 
-$line-height-base-value: $font-size-base-value * 1.5;
 $line-height-base-value-sm: $line-height-base-value * 0.75;
 $line-height-base-value-md: $line-height-base-value * 1;
 $line-height-base-value-lg: $line-height-base-value * 1.25;
@@ -70,9 +69,9 @@ $form-control-font-size: (
 );
 
 $form-control-line-height: (
-  sm: form-control-line-height($font-size-base-value, 12, map-get($form-control-font-size, sm)),
-  md: form-control-line-height($font-size-base-value, 16, map-get($form-control-font-size, md)),
-  lg: form-control-line-height($font-size-base-value, 20, map-get($form-control-font-size, lg)),
+  sm: form-control-line-height(12, map-get($form-control-font-size, sm)),
+  md: form-control-line-height(16, map-get($form-control-font-size, md)),
+  lg: form-control-line-height(20, map-get($form-control-font-size, lg)),
 );
 
 $form-control-border-width: (
@@ -94,9 +93,9 @@ $form-control-padding-x: (
 );
 
 $form-control-padding-y: (
-  sm: form-control-padding-y($font-size-base-value, 32, 12, map-get($form-control-border-width, sm)),
-  md: form-control-padding-y($font-size-base-value, 40, 16, map-get($form-control-border-width, md)),
-  lg: form-control-padding-y($font-size-base-value, 48, 20, map-get($form-control-border-width, lg)),
+  sm: form-control-padding-y(32, 12, map-get($form-control-border-width, sm)),
+  md: form-control-padding-y(40, 16, map-get($form-control-border-width, md)),
+  lg: form-control-padding-y(48, 20, map-get($form-control-border-width, lg)),
 );
 
 $form-control-disabled-opacity: 0.65;

@@ -1,4 +1,5 @@
 @use 'sass:math';
+@import 'base-values';
 
 // Color contrast
 @function color-yiq($color, $dark: $yiq-text-dark, $light: $yiq-text-light) {
@@ -19,10 +20,14 @@
   @return math.div($number, ($number * 0 + 1));
 }
 
-@function form-control-line-height($font-size-base-value, $line-height, $font-size) {
+@function rem-to-px($rem-value) {
+  @return #{strip-units($rem-value) * strip-units($font-size-base-value)}px;
+}
+
+@function form-control-line-height($line-height, $font-size) {
   @return math.div($line-height, $font-size-base-value * strip-units($font-size));
 }
 
-@function form-control-padding-y($font-size-base-value, $height, $line-height, $border-width) {
+@function form-control-padding-y($height, $line-height, $border-width) {
   @return math.div(math.div($height - $line-height - strip-units($border-width) * 2, 2), $font-size-base-value) * 1rem;
 }

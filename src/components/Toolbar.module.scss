@@ -1,17 +1,18 @@
 @import '@styles/variables';
+@import '@styles/functions';
 
 .wrapper {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  column-gap: 0.5rem;
-  padding: 0.5rem;
+  column-gap: rem-to-px(0.5rem);
+  padding: rem-to-px(0.5rem);
   position: fixed;
   top: 0;
   left: 0;
   background-color: $color-white;
   box-shadow: $block-shadow;
-  border-radius: $border-radius-md;
+  border-radius: rem-to-px($border-radius-md);
 
   &Dragging {
     cursor: grabbing;
