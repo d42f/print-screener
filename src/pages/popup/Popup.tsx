@@ -18,6 +18,7 @@ export const Popup = (): JSX.Element => {
   const handleToolbarClick = () => {
     if (currentTab?.id) {
       show(currentTab.id);
+      //window.close();
     }
   };
 

@@ -20,6 +20,8 @@ export const VideoEditor = ({ className, blob, onClose }: VideoEditorProps): JSX
     [],
   );
 
+  const handleRect = () => {};
+
   const handleSave = () => {
     saveLink.current?.click();
   };
@@ -39,7 +41,7 @@ export const VideoEditor = ({ className, blob, onClose }: VideoEditorProps): JSX
         {objectUrl ? (
           <>
             <video className={styles.video} src={objectUrl} controls={false} />
-            <EditorToolbar onSave={handleSave} />
+            <EditorToolbar onRect={handleRect} onSave={handleSave} />
             <a className={styles.hiddenLink} ref={saveLink} href={objectUrl} download={fileName}></a>
           </>
         ) : (

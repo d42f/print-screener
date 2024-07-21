@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export enum BackgroundCommand {
   GetTab = 'BackgroundGetTab',
   CaptureVisibleTab = 'BackgroundCaptureVisibleTab',
@@ -11,9 +12,8 @@ export enum OffscreenCommand {
   StopRecording = 'OffscreenStopRecording',
 }
 
-export type SendResponse<T> = (response: T) => void;
+export type SendResponse<T> = (response: T | { error?: any }) => void;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CommandAction<M = any, R = any> = (arg: {
   message: M;
   sender: chrome.runtime.MessageSender;

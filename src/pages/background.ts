@@ -35,9 +35,13 @@ const startRecordingVisibleTab: CommandAction<void, { streamId: string; base64Bl
     });
   }
   if (sender.tab?.id) {
-    const streamId = await getTabMediaStreamId(sender.tab.id);
-    const { base64Blob } = await callCommand<{ base64Blob: string }>(OffscreenCommand.StartRecording, { streamId });
-    sendResponse({ streamId, base64Blob });
+    try {
+      const streamId = await getTabMediaStreamId(sender.tab.id);
+      const { base64Blob } = await callCommand<{ base64Blob: string }>(OffscreenCommand.StartRecording, { streamId });
+      sendResponse({ streamId, base64Blob });
+    } catch (error) {
+      console.log({ error });
+    }
   }
 };
 
