@@ -40,7 +40,7 @@ const startRecordingVisibleTab: CommandAction<void, { streamId: string; base64Bl
       const { base64Blob } = await callCommand<{ base64Blob: string }>(OffscreenCommand.StartRecording, { streamId });
       sendResponse({ streamId, base64Blob });
     } catch (error) {
-      console.log({ error, id: sender.tab?.id });
+      console.log({ error, id: sender.tab?.id, hasOffscreenDocument });
     }
   }
 };
